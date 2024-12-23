@@ -1,32 +1,23 @@
-// File: Random.jack
 class Random {
     static int seed;
-    
-    // Initialize with a default seed
     function void init() {
         let seed = 12345;
         return;
     }
-    
-    // Set custom seed
     function void setSeed(int newSeed) {
         let seed = newSeed;
         return;
     }
-    
-    // Generate next random number
     function int rand() {
         let seed = seed * 1309 + 13849;
         if (seed < 0) {
-            let seed = ~seed;  // Make positive if negative
+            let seed = ~seed;  
         }
         return seed;
     }
-    
-    // Generate random number in range [0, max)
     function int randRange(int max) {
         var int rand;
         let rand = Random.rand();
-        return rand - ((rand / max) * max);  // Modulo operation
+        return rand - ((rand / max) * max); 
     }
 }

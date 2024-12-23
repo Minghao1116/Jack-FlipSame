@@ -1,32 +1,31 @@
 class Main {
-    /** Main entry point */
     function void main() {
-        var Memory_Game game;  // Use Memory_Game to avoid issues with underscore
+        var Memory_Game game;  
         var char key;
         
-        // Clear screen and show welcome message
+        
         do Screen.clearScreen();
         do Output.moveCursor(10, 20);
         do Output.printString("Memory Game");
         do Output.moveCursor(11, 15);
         do Output.printString("Press SPACE to start game");
         
-        // Wait for space key
+        
         let key = 0;
-        while (~(key = 32)) {  // Wait for SPACE
+        while (~(key = 32)) {  
             let key = Keyboard.keyPressed();
             do Sys.wait(50);
         }
         
-        // Clear screen and start game
+        
         do Screen.clearScreen();
         let game = Memory_Game.new();
         
-        // Reset key to avoid immediate flip
+        
         let key = 0;
-        while (~(key = 81)) {  // Q to quit
+        while (~(key = 81)) {  
             let key = Keyboard.keyPressed();
-            if (key > 0) {  // Only handle non-zero keys
+            if (key > 0) {  
                 do game.handleInput(key);
             }
             do Sys.wait(50);
