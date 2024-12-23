@@ -123,7 +123,6 @@ class Memory_Game {
     method void checkMatch() {
         if (cards[firstCard] = cards[secondCard]) {
             do Output.moveCursor(21, 0);
-            // do Output.printString("Yea! Found a match!");
             let matched[firstCard] = true;
             let matched[secondCard] = true;
             let firstCard = -1;
@@ -131,12 +130,10 @@ class Memory_Game {
             let waitingForDelay = false;
             if (isGameOver()) {
                 let gameOver = true;
-                // do showScore();
                 do restart();
             }
         } else {
             do Output.moveCursor(21, 0);
-            // do Output.printString("Not a match... ");
             do draw();  
             do Sys.wait(800);  
             let revealed[firstCard] = false;
@@ -162,14 +159,6 @@ class Memory_Game {
         return true;
     }
 
-    // method void showScore() {
-    //     // do Output.moveCursor(20, 0);
-    //     do Output.printString("Game Over! Total moves: ");
-    //     do Output.printInt(moves);
-    //     do Output.println();
-    //     return;
-    // }
-
     method void restart() {
         var int i;
         let i = 0;
@@ -189,7 +178,6 @@ class Memory_Game {
         return;
     }
 
-    
     method void draw() {
         var int i, x, y, value;
         do Screen.clearScreen();
@@ -199,7 +187,6 @@ class Memory_Game {
         do Output.printString("SPACE - Flip");
         do Output.moveCursor(2, 0);
         do Output.printString("Q - Quit");
-        
         let i = 0;
         while (i < 16) {
             let x = (i - ((i / 4) * 4)) * 50 + 10;
@@ -220,7 +207,6 @@ class Memory_Game {
             }
             let i = i + 1;
         }
-        
         let i = (cursorY * 4) + cursorX;
         if (~matched[i]) {
             let x = cursorX * 50 + 10;
@@ -233,7 +219,7 @@ class Memory_Game {
         }
         return;
     }
-
+    
     method void dispose() {
         do Memory.deAlloc(cards);
         do Memory.deAlloc(revealed);

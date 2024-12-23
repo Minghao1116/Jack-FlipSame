@@ -3,20 +3,17 @@ class Main {
         var Memory_Game game;  
         var char key;
         
-        
         do Screen.clearScreen();
         do Output.moveCursor(10, 20);
         do Output.printString("Memory Game");
         do Output.moveCursor(11, 15);
         do Output.printString("Press SPACE to start game");
         
-        
         let key = 0;
         while (~(key = 32)) {  
             let key = Keyboard.keyPressed();
             do Sys.wait(50);
         }
-        
         
         do Screen.clearScreen();
         let game = Memory_Game.new();
@@ -30,7 +27,6 @@ class Main {
             }
             do Sys.wait(50);
         }
-        
         do game.dispose();
         return;
     }
