@@ -1,4 +1,3 @@
-
 class Memory_Game {
     field Array cards;        
     field Array revealed;     
@@ -48,7 +47,6 @@ class Memory_Game {
             let cards[i + 8] = i + 1;
             let i = i + 1;
         }
-        
         let i = 0;
         while (i < 15) {
             let randPos = Random.randRange(15 - i) + i;
@@ -71,7 +69,6 @@ class Memory_Game {
         return;
     }
 
-    
     method void moveUp() {
         if (cursorY > 0) {
             let cursorY = cursorY - 1;
@@ -79,7 +76,6 @@ class Memory_Game {
         return;
     }
 
-    
     method void moveDown() {
         if (cursorY < 3) {
             let cursorY = cursorY + 1;
@@ -87,7 +83,6 @@ class Memory_Game {
         return;
     }
 
-    
     method void moveLeft() {
         if (cursorX > 0) {
             let cursorX = cursorX - 1;
@@ -95,7 +90,6 @@ class Memory_Game {
         return;
     }
 
-    
     method void moveRight() {
         if (cursorX < 3) {
             let cursorX = cursorX + 1;
@@ -103,11 +97,9 @@ class Memory_Game {
         return;
     }
 
-   
     method void flipCard() {
         var int index;
         let index = (cursorY * 4) + cursorX;
-        
         
         if (matched[index] | revealed[index]) {
             return;
@@ -128,11 +120,10 @@ class Memory_Game {
         return;
     }
 
-    
     method void checkMatch() {
         if (cards[firstCard] = cards[secondCard]) {
             do Output.moveCursor(21, 0);
-            do Output.printString("Yea! Found a match!");
+            // do Output.printString("Yea! Found a match!");
             let matched[firstCard] = true;
             let matched[secondCard] = true;
             let firstCard = -1;
@@ -140,12 +131,12 @@ class Memory_Game {
             let waitingForDelay = false;
             if (isGameOver()) {
                 let gameOver = true;
-                do showScore();
+                // do showScore();
                 do restart();
             }
         } else {
             do Output.moveCursor(21, 0);
-            do Output.printString("Not a match... ");
+            // do Output.printString("Not a match... ");
             do draw();  
             do Sys.wait(800);  
             let revealed[firstCard] = false;
@@ -171,15 +162,14 @@ class Memory_Game {
         return true;
     }
 
-    method void showScore() {
-        do Output.moveCursor(20, 0);
-        do Output.printString("Game Over! Total moves: ");
-        do Output.printInt(moves);
-        do Output.println();
-        return;
-    }
+    // method void showScore() {
+    //     // do Output.moveCursor(20, 0);
+    //     do Output.printString("Game Over! Total moves: ");
+    //     do Output.printInt(moves);
+    //     do Output.println();
+    //     return;
+    // }
 
-    
     method void restart() {
         var int i;
         let i = 0;
@@ -214,18 +204,14 @@ class Memory_Game {
         while (i < 16) {
             let x = (i - ((i / 4) * 4)) * 50 + 10;
             let y = (i / 4) * 50 + 50;
-            
             if (matched[i]) {
-                
                 do Screen.setColor(true);
                 do Screen.drawRectangle(x, y, x + 40, y + 40);
             } else {
-                
                 do Screen.setColor(true);
                 do Screen.drawRectangle(x, y, x + 40, y + 40);
                 do Screen.setColor(false);
                 do Screen.drawRectangle(x + 2, y + 2, x + 38, y + 38);
-                
                 if (revealed[i]) {
                     let value = cards[i];
                     do Output.moveCursor((y + 20)/11, (x + 20)/8);
@@ -245,7 +231,6 @@ class Memory_Game {
             do Screen.drawRectangle(x - 2, y, x, y + 40);  
             do Screen.drawRectangle(x + 40, y, x + 42, y + 40);  
         }
-        
         return;
     }
 
